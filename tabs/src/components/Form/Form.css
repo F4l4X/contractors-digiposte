@@ -1,0 +1,119 @@
+ul li{
+    display: flex;
+} 
+
+ul {
+    position: relative;
+    width: 250px;
+    margin: 30px auto 0;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 5px 0;
+    transition: .5s;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Arapey|Cantarell|Comfortaa|Khand|Russo+One|Ubuntu');
+
+
+/*End Fonts*/
+
+h1{
+  margin-bottom: 7%;
+}
+
+/*tooltip Box*/
+.con-tooltip {
+
+  position: relative;
+  background: #ffffff;
+  
+  border-radius: 50%;
+  padding: 0 0px;
+  margin: 1px;
+  
+  
+  display: inline-block;
+  
+  transition: all 0.3s ease-in-out;
+  cursor: default;
+
+}
+
+/*tooltip */
+.tooltip {
+  visibility: hidden;
+  z-index: 1;
+  opacity: .40;
+  
+  width: 100%;
+  padding:  0 90px;
+
+  background: rgb(29, 64, 180);
+  color: #ffffff;
+  
+  position: absolute;
+  top:-140%;
+  left: -80%;
+  
+
+  border-radius: 9px;
+  font-size: 9px;
+
+  transform: translateY(9px);
+  transition: all 0.3s ease-in-out;
+  
+  box-shadow: 0 0 3px rgba(43, 31, 179, 0.86);
+}
+
+
+/* tooltip  after*/
+.tooltip::after {
+  content: " ";
+  width: 0;
+  height: 0;
+  
+  border-style: solid;
+  border-width: 12px 12.5px 0 12.5px;
+  border-color: rgba(43, 31, 179, 0.86) transparent transparent transparent;
+
+  position: absolute;
+  left: 30%;
+
+}
+
+.con-tooltip:hover .tooltip{
+  visibility: visible;
+  transform: translateY(-10px);
+  opacity: 1;
+    transition: .3s linear;
+  animation: odsoky 1s ease-in-out infinite  alternate;
+
+}
+@keyframes odsoky {
+  0%{
+    transform: translateY(6px);	
+  }
+
+  100%{
+    transform: translateY(1px);	
+  }
+
+}
+
+/*hover ToolTip*/
+.left:hover {transform: translateX(-6px); }
+.top:hover {transform: translateY(-6px);  }
+.bottom:hover {transform: translateY(6px);}
+.right:hover {transform: translateX(6px); }
+
+
+
+/*left*/
+
+.left .tooltip{ top:-20%; left:-300%; }
+
+.left .tooltip::after{
+  top:40%;
+  left:90%;
+  transform: rotate(-90deg);
+}

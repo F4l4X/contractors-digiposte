@@ -9,7 +9,6 @@ import useStyle from './styles'
 import Form from './components/Form/Form';
 import Contractors from "./components/Contractors/Contractors";
 import './index.css';
-import Searchbar from './components/SearchBar';
 
 const App = () => {
   const [currentId, setCurrentId] = useState(0);

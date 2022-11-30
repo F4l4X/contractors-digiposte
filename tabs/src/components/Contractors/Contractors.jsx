@@ -35,7 +35,9 @@ const Contractors = ({ setCurrentId }) => {
                 </Grid>
                 <Grid className={classes.container} container alignItems="stretch" spacing={3}>
                     {contractors.filter((contractors) => {
-                        return contractors.firstname.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                        return (
+                            contractors.firstname.toLowerCase().includes(searchTerm.toLocaleLowerCase())
+                        )
                     }).map((contractor) => (
                         <Grid item key={contractor._id} xs={12} sm={6}>
                             <Contractor contractor={contractor} setCurrentId={setCurrentId}/>

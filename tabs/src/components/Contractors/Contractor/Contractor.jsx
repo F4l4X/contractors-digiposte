@@ -19,7 +19,7 @@ const Contractor = ({ contractor, setCurrentId }) => {
         <div className={classes.overlay}>
           <Typography variant="h6">{contractor.firstname}</Typography>
           <Typography variant="h5">{contractor.lastname}</Typography>
-          <Typography variant="h7">{contractor.position}</Typography>
+          <Typography variant="h6">{contractor.position}</Typography>
         </div>
         <div className={classes.details}>
         <Typography variant="body2">Head: {contractor.head}</Typography>

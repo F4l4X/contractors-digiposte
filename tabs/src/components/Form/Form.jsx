@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { TextField, Button, Typography, Paper, Select } from '@material-ui/core';
 import Filebase from 'react-file-base64';
-
+import { GrCircleInformation } from 'react-icons/gr';
 
 import useStyle from './styles';
 import { createContractor, updateContractor } from "../../actions/contractors";
 import { useDispatch, useSelector } from "react-redux";
-
+import "./Form.css";
+//import Tooltip from './Hint'
 
 
 const Form = ({ currentId, setCurrentId }) => {
@@ -17,23 +18,23 @@ const Form = ({ currentId, setCurrentId }) => {
 
 
     const [categories, setCategories] = useState([
-        {name: " BO-ADMIN "},
-        {name: " SSH "},
-        {name: " GITLAB/NEXUS "},
-        {name: " GRAYLOG "},
-        {name: " NEW-RELIC "},
-        {name: " GECCO "},
-        {name: " JIRA/CONFLUENCES "},
-        {name: " SQREEN "},
-        {name: " DIGIPOSTE-MANAGER "},
-        {name: " AT-INTERNET "},
-        {name: " AB-TASTY "},
-        {name: " KLAXOON "},
-        {name: " FIDUCEO "},
-        {name: " DATAVIZ "},
-        {name: " ADMINSTORE "},
-        {name: " SERVICENOW "},
-        {name: " SUPERVISION-FLUX "},
+        {name: " BO-ADMIN ", info: "procedure"},
+        {name: " SSH ", info: "procedure"},
+        {name: " GITLAB/NEXUS ", info: "procedure"},
+        {name: " GRAYLOG ", info: "procedure"},
+        {name: " NEW-RELIC ", info: "procedure"},
+        {name: " GECCO ", info: "procedure"},
+        {name: " JIRA/CONFLUENCES ", info: "procedure"},
+        {name: " SQREEN ", info: "procedure"},
+        {name: " DIGIPOSTE-MANAGER ", info: "procedure"},
+        {name: " AT-INTERNET ", info: "procedure"},
+        {name: " AB-TASTY ", info: "procedure"},
+        {name: " KLAXOON ", info: "procedure"},
+        {name: " FIDUCEO ", info: "procedure"},
+        {name: " DATAVIZ ", info: "procedure"},
+        {name: " ADMINSTORE ", info: "procedure"},
+        {name: " SERVICENOW ", info: "procedure"},
+        {name: " SUPERVISION-FLUX ", info: "procedure"},
     ]);
 
     const [contractorData, setContractorData] = useState({
@@ -56,7 +57,7 @@ const Form = ({ currentId, setCurrentId }) => {
         }, [contractor])
 
     const clear = () => {
-        setCurrentId(null);
+        setCurrentId('');
         setContractorData({firstname:'', lastname:'', position:'', beginMission:'', picture: '',softwares: '', endMission:'', vpnLogin:'', vpn:''})
     };
     
@@ -75,10 +76,22 @@ const Form = ({ currentId, setCurrentId }) => {
         setContractorData({...contractorData, softwares: all})
     };
 
+    const handleMouseEnter = (e) => {
+        console.log(e.target);
+    }
+
     const showCategories = () => {
         return categories.map((c, i) => (
         
-        <li key={i} className="list-unstyled">
+        <li key={i}>
+            <div class="con-tooltip left">
+                <Button>
+                    <GrCircleInformation />
+                </Button>
+                <div class="tooltip ">
+                    <p>{c.info}</p>
+                </div>
+            </div>
             <input
             onChange={handleToggle(c.name)}
             type="checkbox"
@@ -123,7 +136,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     <option value="MRC">MRC</option>
                     <option value="NA">NA</option>
                     <option value="DT">DT</option>
-                </Select>
+                </Select> 
                 <label>VPN:</label>
                 <Select name="vpn" variant='outlined'label="vpn" fullWidth value={contractorData.vpn} onChange={(e) => setContractorData({ ...contractorData, vpn: e.target.value })}>
                     <option value="" disabled selected>Select a VPN</option>
@@ -139,7 +152,9 @@ const Form = ({ currentId, setCurrentId }) => {
                 </Select> 
                 <div>
                     <h2>Softwares</h2>
-                    {showCategories()}
+                    <ul>
+                       {showCategories()} 
+                    </ul>
                 </div>
                 <div className="fileInput">
                     <Filebase type="file" multiple={false} onDone={({base64})  => setContractorData({ ...contractorData, picture : base64 })}/>
