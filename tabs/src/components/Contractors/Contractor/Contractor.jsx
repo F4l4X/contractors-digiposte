@@ -1,10 +1,12 @@
 import React from "react";
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, Container } from '@material-ui/core/';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import DeleteIcon from '@material-ui/icons/Delete';
 import moment from 'moment'
 import useStyles from './styles';
 import { useDispatch } from "react-redux";
+import { CircularProgressbar, CircularProgressbarWithChildren } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 import { deleteContractor } from "../../../actions/contractors";
 
@@ -30,6 +32,16 @@ const Contractor = ({ contractor, setCurrentId }) => {
         <div className={classes.details}>
         <Typography variant="body2">VPN: {contractor.vpn}</Typography>
         </div>
+        <div className={classes.floatContainer}>
+          <div className={classes.floatChild}>
+            <Typography variant="body2">Accredidation status :</Typography>
+          </div>
+          <div className={classes.floatChild}>
+              <Button>
+                <CircularProgressbarWithChildren value={(((contractor.softwares).length)/5)*100} text={`${(((contractor.softwares).length)/5)*100}%`}/>
+              </Button>
+          </div>
+        </div>
         <div className={classes.overlay2}>
           <Button style={{color: 'white'}} size="small" onClick={() => setCurrentId(contractor._id)}>
             <MoreHorizIcon fontSize="medium"/>
@@ -51,35 +63,3 @@ const Contractor = ({ contractor, setCurrentId }) => {
 }
 
 export default Contractor;
-
-
-
-/*import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core/';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import DeleteIcon from '@material-ui/icons/Delete';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { deleteContractor } from '../../../actions/contractors';
-
-//import { likePost, deletePost } from '../../../actions/posts';
-import useStyles from './styles';
-
-const Contractor = ({ contractor, setCurrentId }) => {
-  const dispatch = useDispatch();
-  const classes = useStyles();
-
-  return (
-    <Card className={classes.card}>
-      <div className={classes.overlay}>
-        <Typography variant="h6">{contractor.firstname}</Typography>
-      </div>
-      <div className={classes.overlay}>
-        <Typography variant="h6">{contractor.lastname}</Typography>
-      </div>
-    </Card>
-  );
-};
-
-export default Contractor;*/

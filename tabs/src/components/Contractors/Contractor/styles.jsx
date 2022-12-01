@@ -49,4 +49,14 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'space-between',
   },
+  floatContainer: {
+    border: '1px',
+    padding: '0px',
+  },
+  floatChild: {
+    width: '50%',
+    float: 'left',
+    padding: '20px',
+    border: '2px'
+  }
 });
