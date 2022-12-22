@@ -7,7 +7,6 @@ import useStyle from './styles';
 import { createContractor, updateContractor } from "../../actions/contractors";
 import { useDispatch, useSelector } from "react-redux";
 import "./Form.css";
-//import Tooltip from './Hint'
 
 
 const Form = ({ currentId, setCurrentId }) => {
@@ -45,6 +44,7 @@ const Form = ({ currentId, setCurrentId }) => {
         vpn: '',
         vpnLogin: '',
         softwares: '',
+        done: '',
         picture: '',
         beginMission: new Date(),
         endMission: new Date()
@@ -58,7 +58,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
     const clear = () => {
         setCurrentId('');
-        setContractorData({firstname:'', lastname:'', position:'', beginMission:'', picture: '',softwares: '', endMission:'', vpnLogin:'', vpn:''})
+        setContractorData({firstname:'', lastname:'', position:'', beginMission:'', picture: '',softwares: '', done:'', endMission:'', vpnLogin:'', vpn:''})
     };
     
     const handleToggle = c => () => {
@@ -76,9 +76,6 @@ const Form = ({ currentId, setCurrentId }) => {
         setContractorData({...contractorData, softwares: all})
     };
 
-    const handleMouseEnter = (e) => {
-        console.log(e.target);
-    }
 
     const showCategories = () => {
         return categories.map((c, i) => (
@@ -96,11 +93,34 @@ const Form = ({ currentId, setCurrentId }) => {
             onChange={handleToggle(c.name)}
             type="checkbox"
             className="mr-2"
+            //defaultChecked={contractor.softwares.includes(c.name)}
             />
             <label className="form-check-label">{c.name}</label>
         </li>
         ));
     };
+
+    const checkedCategories = () => {
+        return contractor.softwares.map((item, index) => (
+            <li key={index}>
+                <div class="con-tooltip left">
+                    <Button>
+                        <GrCircleInformation />
+                    </Button>
+                    <div class="tooltip ">
+                        <p>{item.info}</p>
+                    </div>
+                </div>
+                <input
+                onChange={handleToggle(item)}
+                type="checkbox"
+                className="mr-2"
+                defaultChecked={contractor.done.includes(item)}
+                />
+                <label className="form-check-label">{item}</label>
+            </li>
+        ))
+    } 
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -153,7 +173,7 @@ const Form = ({ currentId, setCurrentId }) => {
                 <div>
                     <h2>Softwares</h2>
                     <ul>
-                       {showCategories()} 
+                       {currentId ? checkedCategories() : showCategories()} 
                     </ul>
                 </div>
                 <div className="fileInput">

@@ -58,5 +58,10 @@ export default makeStyles({
     float: 'left',
     padding: '20px',
     border: '2px'
+  },
+  box: {
+    border: '1px',
+    backgroundColor: 'white',
+    borderRadius: '10px'
   }
 });

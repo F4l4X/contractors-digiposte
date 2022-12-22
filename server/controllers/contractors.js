@@ -39,6 +39,7 @@ export const updateContractor = async (req, res) => {
         vpn, 
         vpnLogin,
         softwares,
+        done,
         picture, 
         beginMission, 
         endMission
@@ -54,6 +55,7 @@ export const updateContractor = async (req, res) => {
         vpn, 
         vpnLogin,
         softwares,
+        done,
         picture, 
         beginMission, 
         endMission, 

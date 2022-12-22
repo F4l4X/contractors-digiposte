@@ -8,6 +8,7 @@ const contractorSchema = mongoose.Schema({
     vpn: String,
     vpnLogin: String,
     softwares: [String],
+    done: [String],
     picture: String,
     beginMission: {
         type: Date,

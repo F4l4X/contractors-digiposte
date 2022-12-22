@@ -44,25 +44,4 @@ const App = () => {
   )
 }
 
-/*
-<Container>
-      <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography variant="h2" className={classes.heading} align='center'>Digiposte</Typography>
-        <img src={logo_digiposte} className={classes.image} alt="digiposte" height="60"/>
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container className={classes.mainContainer} justifyContent="space-between" alignItems="stretch" spacing={3}>
-            <Grid item xs={12} sm={7}>
-              <Contractors />
-            </Grid>
-            <Grid item xs={12} sm={4}>
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>
-*/
-
-/* <Form currentId={currentId} setCurrentId={setCurrentId}/>*/
 export default App;
